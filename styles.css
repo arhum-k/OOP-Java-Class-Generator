@@ -1,0 +1,85 @@
+/*
+  What to add:  
+  - add extendable textbox
+  - add space between "done' button and results
+*/
+body {
+  font-family: sans-serif;
+  background-color: rgb(168, 168, 206);
+}
+
+#title h1 {
+  background-color: lightslategray;
+  text-align: center;
+  font-family: "Monospace", Lucida Console;
+}
+
+#app {
+  font-family: "Monospace", Courier New;
+}
+
+#app #class {
+  width: 30%;
+  padding: 8px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid a;
+  border-radius: 100px;
+}
+
+#app #vars {
+  width: 50%;
+  padding: 8px 15px;
+  box-sizing: border-box;
+  border: 2px solid a;
+  border-radius: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#app #done {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 14px 14px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 13px;
+}
+
+#result {
+  font-size: 15px;
+  font-family: "Monospace", Lucida Console;
+  border: 3px solid;
+}
+
+#copy #copyButton {
+  background-color: #ced7dbcb;
+  border: none;
+  color: black;
+  padding: 13px 13px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 5px px;
+  cursor: pointer;
+  border-radius: 13px;
+}
+
+#copy {
+  margin-top: 10px;
+  font-size: 10px;
+  color: crimson;
+  font-family: "Monospace", Lucida Console;
+}
+
+#textCopied {
+  margin-top: 10px;
+  font-size: 15px;
+  font-family: "Sans-serif", Verdana;
+}

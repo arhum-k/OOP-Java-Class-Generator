@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OOP Class Generator</title>
+		<meta charset="UTF-8" />
+		<link href="styles.css" rel="stylesheet">
+  </head>
+
+  <body>
+		<div id ="title">
+			<h1 >OOP Class Generator</h1> 
+		</div>
+    <div id="app">
+			Enter Class Name:
+			<br>
+			<input id="class" contenteditable>		
+		</input>
+			<br>
+			Enter Instance Variables (data type + name)<br>*comma separated*:
+			<br>
+			<input id="vars"  placeholder="String x, int y, boolean t">		
+			</input>
+			<br>
+			<br>
+			<button id='done'  onclick="runCode()" >
+				Done
+			</button>
+			
+			<div id="result">
+			</div>
+			<div id="copy" style="display:none">
+				<button id='copyButton' onclick="CopyToClipboard('result')">
+					Copy Text
+				</button>
+				<text id="textCopied" style="display:none">Text Copied!</text>
+			</div>
+		</div>
+
+    <script>
+			
+			function runCode(){
+	
+				let inputVar=document.getElementById("vars").value;
+				let inputClass=document.getElementById("class").value;
+
+				let arrVar = [];
+				
+				let num=inputVar.length;
+				//document.getElementById("result").innerHTML = "<h1>" + num + "</h1>";
+		
+				
+				while(num>0){
+					let indOf=inputVar.indexOf(",");
+					if(indOf>=0){
+						arrVar.push(inputVar.substring(0,indOf));
+						inputVar=inputVar.substring(indOf+1).trim();
+						num=inputVar.length;
+						}
+					else{
+						arrVar.push(inputVar);
+						num=0;
+						}
+					}
+				
+				
+				
+				var printMethods=()=>{
+					let output="";
+						output+="<br>//instance variables<br>";
+						for(let i=0;i<arrVar.length;i++){
+							output+= "private "+ arrVar[i]+";<br>";
+							}
+						output+="<br>//default constructor<br>public class "+inputClass+"(){<br>}<br>";
+						output+="<br>//constructor<br>public class "+inputClass+"(";
+						for(let i=0;i<arrVar.length;i++){
+							if(i<arrVar.length-1){
+							output+= arrVar[i]+",";
+								}
+							else{
+								output+=arrVar[i];
+								}
+							}
+						output+="){<br>";
+						for(let i=0;i<arrVar.length;i++){
+							output+="	this."+varName(arrVar[i])+"="+varName(arrVar[i])+";<br>";
+							}
+						output+="}<br>";
+						output+="<br>//accessor methods<br>";
+						for(let i=0;i<arrVar.length;i++){
+							output += "public "+dataType(arrVar[i])+" get"+varName(arrVar[i]).substring(0,1).toUpperCase()+varName(arrVar[i]).substring(1)+"(){<br>	return "+varName(arrVar[i])+";<br>}<br>";
+							//document.getElementById("result").innerHTML = "<h1>" + finalOutput + "</h1>";
+							}
+						output+="<br>//mutator methods<br>";
+						for(let i=0;i<arrVar.length;i++){
+							output+="public void set"+varName(arrVar[i]).substring(0,1).toUpperCase()+varName(arrVar[i]).substring(1)+"("+dataType(arrVar[i])+" "+varName(arrVar[i])+"){<br> this."+varName(arrVar[i])+"="+varName(arrVar[i])+";<br>}<br>";
+							//document.getElementById("result").innerHTML = "<h1>" + output + "</h1>";
+						}
+						
+						if(!checkError()){
+						document.getElementById("result").innerHTML = "<code>" + output + "<br></code>";
+						}
+						else{
+							document.getElementById("result").innerHTML = "<code>Error in data type field</code>";
+						}
+						return output;
+				}
+				
+
+				const dataType =(var1)=>{
+						return var1.substring(0,var1.indexOf(" "));
+				}
+
+				const varName = var1 =>{
+						return var1.substring(var1.indexOf(" ")+1);
+				}
+
+				//checks if there are errors
+
+				function checkError(){
+					for(let i=0;i<arrVar.length;i++){
+						if(arrVar[i].indexOf(" ")===-1){
+							
+							return true;
+						}
+						
+						if(arrVar[i].indexOf("String")!==-1 || arrVar[i].indexOf("int")!==-1 || arrVar[i].indexOf("double")!==-1 || arrVar[i].indexOf("boolean")!==-1 || arrVar[i].indexOf("float")!==-1){
+							
+						}
+						else{
+							return true;
+						}
+						
+					}
+					return false;
+			}
+
+				
+				printMethods();
+				
+				var p = document.getElementById("copy");
+				p.style.display="block";
+				
+			
+		}
+
+		function CopyToClipboard(id){
+			var r = document.createRange();
+			r.selectNode(document.getElementById(id));
+			window.getSelection().removeAllRanges();
+			window.getSelection().addRange(r);
+			document.execCommand('copy');
+			window.getSelection().removeAllRanges();
+			var l =document.getElementById("textCopied");
+			l.style.display="block";
+			//document.getElementById("textCopied").innerHTML = "<text> Text Copied! </text>"
+		}
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
