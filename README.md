@@ -1,7 +1,7 @@
 # OOP-Java-Class-Generator
 
 Why?
-In my AP Computer Science A class, we do labs quite often, meaning we are instructed to make new classes, each with a vast set of instance variables, frequently. For not only me, but my entire class, the process of writing each constructor, accessor/mutator method, and toString method is a hassle, so I created a class generator, that we could all use, that writes this code for us.
+In my AP Computer Science A class, we do labs quite often, meaning we are frequently instructed to make new classes, each with a vast set of instance variables. For not only me, but my entire class, the process of writing each constructor, accessor/mutator method, and toString method is a hassle, so I created a class generator, that we could all use, that writes this code for us.
 
 Input:
 - Class name
